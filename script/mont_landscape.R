@@ -39,6 +39,8 @@ mont <- polygonGrob(x=(x[,4]+0.1)*0.89,
                     y=(y[,4]+0.3)*0.89,
                     gp=gpar(fill = greens[2],
                             col = greens[1]))
+
+
 sol <- circleGrob(x = rep(0.75, 3), 
                   y= rep(0.6, 3),
                   r = c(0.15, 0.08, 0.05),
@@ -52,9 +54,10 @@ fundo <- rectGrob(x = rep(0.5,4),
                   gp = gpar(fill = fundo.col[4:1],
                             col = NA))
 
-
+png(here::here("output", "montain_ladscape.png"), 600, 400)
 grid.newpage()
 grid.draw(fundo)
 grid.draw(sol)
 grid.draw(mont)
+dev.off()
 

@@ -57,8 +57,6 @@ mont.slc4 <- st_crop(montain, bbox)
 bbox[c(2,4)] <- c(8,10)
 mont.slc5 <- st_crop(montain, bbox)
 
-sf_bondary(montain)
-
 
 ggplot(data = mont.slc1) +
   geom_sf(fill = "red", colour = NA) +
@@ -68,4 +66,31 @@ ggplot(data = mont.slc1) +
   geom_sf(data = mont.slc5) + 
   geom_sf(data = st_boundary(montain)) + 
   theme_void()
+
+
+
+# function ----------------------------------------------------------------
+
+source(here::here("function", "make_montain.R"))
+
+
+ntop <- 3
+size <- c(0.65, 0.2, 0.45)
+
+pol <- make_montain(ntop, size)
+
+(mont.plot <-
+ggplot(dat = pol) +
+  geom_polygon(aes(x = x, y = y),
+               fill = NA, 
+               color = "grey20", 
+               size = 0.5) +
+  theme_void() +
+  coord_equal()
+)
+
+ggsave(here::here("output", "mont.png"), 
+       mont.plot, 
+       width = 5, 
+       height = 5, type = 'cairo')
 

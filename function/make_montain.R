@@ -3,6 +3,7 @@ make_montain <- function(ntop, size){
   sino <- round(sin(sqnc), 2)
   mtx <- matrix(0,  length(sqnc), 2*ntop)
   dir <- 1
+  
   for(i in 1:ncol(mtx)){
     mtx[,i] <- dir*sino
     dir <- -1*dir
@@ -13,9 +14,9 @@ make_montain <- function(ntop, size){
   for(i in 1:ncol(mtx)){
     mtx[,i] <- mtx[,i]*seg_size[i]
   }
+  
   # resize vector
   rv <- matrix(c(2:ncol(mtx), 1), ncol = 2, byrow = T)
-  
   
   for(k in 1:nrow(rv)){
     
@@ -38,22 +39,9 @@ make_montain <- function(ntop, size){
   x <- c(x, x[1])
   
   #plot(x, y, type = "l")
-  return(matrix(c(x,y), ncol = 2))
+  return(data.frame(x, y))
 }
 
 
 
-ntop <- 2
-size <- c(1, 0.25)
 
-pol <- make_montain(ntop, size)
-
-st_pol <- st_polygon(list(pol))
-
-mont <- st_sfc(st_pol)
-mont$y <- pol[,"y"]
-
-ggplot(mont) +
-  geom_sf() +
-  scale_fill_gradient(n.breaks = 10) +
-  theme_void()
