@@ -37,7 +37,7 @@ ggplot(df_pols, aes(x, y, group = gr, fill = fill)) +
 
 
 ggsave(
-  "r_polygon_1.png", 
+  "output/gallery/r_polygon_1.png", 
   fig, 
   width = 6,
   height = 6
