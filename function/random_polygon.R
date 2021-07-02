@@ -42,12 +42,15 @@ random_poligon <- function(
   xm = mean(range(x))
   ym = mean(range(y))
   
+  df <- 
     data.frame(x, y) %>% 
       dplyr::mutate(
       atan = atan2(y-ym, x-xm)
     )  %>% 
       dplyr::arrange(atan) %>% 
       dplyr::select(x, y)
+  
+  add_row(df, df[1,])
 }
   
   

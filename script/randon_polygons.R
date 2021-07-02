@@ -29,6 +29,10 @@ ggplot(df_pols, aes(x, y, group = gr, fill = fill)) +
     color = "white",
     size = 1, 
     show.legend = F) +
+  geom_path(
+    color = "white",
+    size = 1, 
+    show.legend = F) +
   scale_fill_manual(values = cols) +
   theme_void() +
   theme(
@@ -42,5 +46,4 @@ ggsave(
   width = 6,
   height = 6
 )  
-
 
